@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "title": "Solace",
+      "category": "Brand Identity",
+      "image": "https://placehold.co/600x450/1C1428/E24FDD?text=Solace",
+      "description": "Wordmark and clinic identity for a mental-health practice — calm, confident, unhurried."
+    },
+    {
+      "title": "Northbeam Coffee",
+      "category": "Logo Design",
+      "image": "https://placehold.co/600x450/1C1428/E24FDD?text=Northbeam",
+      "description": "A roastery mark built around a single directional line — signage-ready at any size."
+    },
+    {
+      "title": "Ferra Robotics",
+      "category": "Startup Identity",
+      "image": "https://placehold.co/600x450/1C1428/E24FDD?text=Ferra",
+      "description": "Pre-seed hardware startup identity, designed to still work at Series B."
+    },
+    {
+      "title": "Marée",
+      "category": "Rebrand",
+      "image": "https://placehold.co/600x450/1C1428/E24FDD?text=Maree",
+      "description": "Seafood restaurant rebrand — moved from generic nautical clichés to something quietly premium."
+    },
+    {
+      "title": "Kite & Co.",
+      "category": "Personal Brand",
+      "image": "https://placehold.co/600x450/1C1428/E24FDD?text=Kite+%26+Co",
+      "description": "Personal-brand mark for a freelance consultant, built to travel across a deck, a site and a signature."
+    },
+    {
+      "title": "Vantpoint",
+      "category": "Brand Identity",
+      "image": "https://placehold.co/600x450/1C1428/E24FDD?text=Vantpoint",
+      "description": "B2B analytics platform identity — precise, structured, faintly technical."
+    }
+  ]
+}

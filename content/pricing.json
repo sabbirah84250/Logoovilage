@@ -1,0 +1,51 @@
+{
+  "packages": [
+    {
+      "name": "Basic",
+      "tagline": "For solo & side projects",
+      "price": "€180",
+      "highlighted": false,
+      "features": [
+        "2 initial logo concepts",
+        "2 rounds of revisions",
+        "1 final logo, primary version",
+        "Files: PNG, JPG, PDF",
+        "Basic social media profile kit",
+        "3–4 day delivery"
+      ]
+    },
+    {
+      "name": "SME",
+      "tagline": "For growing small & medium businesses",
+      "price": "€420",
+      "highlighted": true,
+      "features": [
+        "4 initial logo concepts",
+        "4 rounds of revisions",
+        "Primary logo + 2 alternate layouts",
+        "Full colour palette & typography pairing",
+        "Vector source files: AI, EPS, SVG",
+        "Business card & letterhead mockup",
+        "Social media kit (profile + covers)",
+        "6–8 day delivery"
+      ]
+    },
+    {
+      "name": "Startup / Company",
+      "tagline": "For funded startups & established companies",
+      "price": "€780",
+      "highlighted": false,
+      "features": [
+        "6 initial logo concepts",
+        "Unlimited revisions (2 structured rounds)",
+        "Full brand identity system: primary, secondary & icon marks",
+        "Complete brand guideline document (PDF)",
+        "Stationery suite: business card, letterhead, envelope",
+        "Social media & pitch-deck asset kit",
+        "1 live consultation call",
+        "Full copyright & source file ownership",
+        "10–14 day delivery"
+      ]
+    }
+  ]
+}

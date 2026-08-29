@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "title": "Why most small-business logos fail in the first year",
+      "slug": "why-small-business-logos-fail",
+      "date": "2026-06-02",
+      "cover": "https://placehold.co/1200x750/1C1428/E24FDD?text=Article+cover",
+      "excerpt": "It's rarely the colour or the font. It's almost always that the mark was designed to be liked, not to be used.",
+      "body": "## The real reason logos get replaced\n\nMost redesigns don't happen because a logo looked bad. They happen because the logo couldn't survive contact with the real world — a favicon that turned into a smudge, a wordmark that broke across two lines on a delivery bag, a mark that only ever looked good on the one white background it was designed on.\n\n### What actually needs testing before delivery\n\n- How it reads at 24px, not just on a 27-inch monitor\n- How it looks in a single flat colour, no gradients to hide behind\n- Whether it still makes sense next to a competitor's mark on a shelf\n\nA logo isn't a piece of art. It's a piece of infrastructure — the more places it has to work, the simpler it usually needs to be."
+    },
+    {
+      "title": "Brand colour isn't decoration — it's a decision",
+      "slug": "brand-colour-is-a-decision",
+      "date": "2026-05-14",
+      "cover": "https://placehold.co/1200x750/1C1428/E24FDD?text=Article+cover",
+      "excerpt": "Picking a colour because you like it is how you end up looking like three other companies in your category.",
+      "body": "## Start with the category, not the mood board\n\nBefore any palette gets proposed, it's worth mapping what colour every serious competitor is already using. If everyone in your space leans blue, being the one confident magenta or forest green in the room does more for recognition than a cleverer logomark ever will.\n\n### A short, honest checklist\n\n1. What does this colour already mean in our category?\n2. Does it still work when printed in one flat Pantone?\n3. Would we still choose it in five years, or is it just on-trend right now?\n\nColour is one of the fastest things a customer's eye processes. Treat the choice with the weight it deserves."
+    }
+  ]
+}

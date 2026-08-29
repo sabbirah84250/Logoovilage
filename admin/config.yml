@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images are stored in the repo, and the URL path used to reference them
+media_folder: "uploads"
+public_folder: "/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "work"
+    label: "Our Work (Portfolio)"
+    files:
+      - file: "content/work.json"
+        label: "Portfolio Items"
+        name: "work"
+        fields:
+          - label: "Portfolio Items"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.category}}"
+            fields:
+              - { label: "Project Title", name: "title", widget: "string" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Logo Design", "Brand Identity", "Rebrand", "Startup Identity", "Personal Brand"]
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Short Description", name: "description", widget: "text" }
+
+  - name: "pricing"
+    label: "Pricing Packages"
+    files:
+      - file: "content/pricing.json"
+        label: "Pricing"
+        name: "pricing"
+        fields:
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Package Name", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Price (e.g. €420)", name: "price", widget: "string" }
+              - { label: "Highlight this package?", name: "highlighted", widget: "boolean", default: false }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+
+  - name: "blogs"
+    label: "Blog Posts"
+    files:
+      - file: "content/blogs.json"
+        label: "Blog Posts"
+        name: "blogs"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL Slug (no spaces, e.g. my-first-post)", name: "slug", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime" }
+              - { label: "Cover Image", name: "cover", widget: "image" }
+              - { label: "Short Excerpt (shown on blog list)", name: "excerpt", widget: "text" }
+              - { label: "Full Content", name: "body", widget: "markdown" }
+
+  - name: "site"
+    label: "Site Text"
+    files:
+      - file: "content/site.json"
+        label: "General Content"
+        name: "site"
+        fields:
+          - { label: "Custom Site Logo (optional — leave empty to keep the animated LV mark)", name: "logo_image", widget: "image", required: false }
+          - { label: "Homepage Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Homepage Hero Subtitle", name: "hero_subtitle", widget: "text" }
+          - { label: "About Us Text", name: "about_text", widget: "text" }
+          - { label: "Contact Email", name: "contact_email", widget: "string" }
+          - { label: "Contact Phone", name: "contact_phone", widget: "string" }
+          - { label: "WhatsApp Number (digits only, with country code)", name: "whatsapp", widget: "string" }
