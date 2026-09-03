@@ -26,8 +26,19 @@ collections:
                 name: "category"
                 widget: "select"
                 options: ["Logo Design", "Brand Identity", "Rebrand", "Startup Identity", "Personal Brand"]
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Short Description", name: "description", widget: "text" }
+              - { label: "Cover Image", name: "image", widget: "image" }
+              - { label: "Short Description (shown on the grid card)", name: "description", widget: "text" }
+              - { label: "URL Slug (no spaces, e.g. green-home-logo — leave empty to auto-generate from title)", name: "slug", widget: "string", required: false }
+              - { label: "Client Name (optional)", name: "client", widget: "string", required: false }
+              - { label: "Year (optional)", name: "year", widget: "string", required: false }
+              - { label: "Full Case Study Story (optional — headings, bold, lists all work)", name: "body", widget: "markdown", required: false }
+              - label: "Process Gallery (optional — extra images with captions, shown below the story)"
+                name: "gallery"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Caption", name: "caption", widget: "string", required: false }
 
   - name: "pricing"
     label: "Pricing Packages"
@@ -77,6 +88,8 @@ collections:
         name: "site"
         fields:
           - { label: "Custom Site Logo (optional — leave empty to keep the animated LV mark)", name: "logo_image", widget: "image", required: false }
+          - { label: "Address (short — used in the footer)", name: "address", widget: "string" }
+          - { label: "Address (full — used on the Contact page)", name: "address_full", widget: "string" }
           - { label: "Homepage Hero Title", name: "hero_title", widget: "string" }
           - { label: "Homepage Hero Subtitle", name: "hero_subtitle", widget: "text" }
           - { label: "About Us Text", name: "about_text", widget: "text" }
