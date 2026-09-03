@@ -127,15 +127,20 @@ async function hydrateHeroWords() {
 /* =========================================================
    PORTFOLIO ("Our Work")
    ========================================================= */
+function slugify(str = '') {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
 function plotCard(item, i) {
   const coord = 'PLOT ' + String.fromCharCode(65 + Math.floor(i / 10)) + (i % 10 + 1);
+  const slug = item.slug || slugify(item.title);
   return `
-  <article class="plot">
+  <a class="plot" href="work-detail.html?slug=${encodeURIComponent(slug)}">
     <span class="plot-coord">${coord} — ${escapeHTML(item.category || '')}</span>
     <img class="plot-img" src="${item.image || 'https://placehold.co/600x450/1C1428/E24FDD?text=Add+image'}" alt="${escapeHTML(item.title || '')}" loading="lazy">
     <h3>${escapeHTML(item.title || 'Untitled project')}</h3>
     <p>${escapeHTML(item.description || '')}</p>
-  </article>`;
+    <span class="plot-tag">View case study →</span>
+  </a>`;
 }
 async function hydrateWork(limit) {
   const grid = document.querySelector('[data-work-grid]');
@@ -169,6 +174,45 @@ async function hydratePricing() {
   const packages = (data && data.packages) || [];
   if (!packages.length) { grid.innerHTML = '<p>Pricing packages will appear here once added in the admin panel.</p>'; return; }
   grid.innerHTML = packages.map(priceCard).join('');
+}
+
+/* =========================================================
+   CASE STUDY (work detail page)
+   ========================================================= */
+async function hydrateWorkDetail() {
+  const wrap = document.querySelector('[data-work-detail]');
+  if (!wrap) return;
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  const data = await loadJSON('content/work.json');
+  const items = (data && data.items) || [];
+  const item = items.find(w => (w.slug || slugify(w.title)) === slug);
+  if (!item) {
+    wrap.innerHTML = '<div class="container"><p>This project could not be found. <a href="work.html">Back to all work</a></p></div>';
+    return;
+  }
+  document.title = item.title + ' — Logovilage Case Study';
+  const bodyHTML = (typeof marked !== 'undefined' && item.body) ? marked.parse(item.body) : (item.body ? `<p>${escapeHTML(item.body)}</p>` : '');
+  const gallery = (item.gallery || []).map(g => {
+    const src = typeof g === 'string' ? g : g.image;
+    const caption = typeof g === 'string' ? '' : (g.caption || '');
+    return `<figure><img src="${src}" alt="${escapeHTML(item.title)}" loading="lazy">${caption ? `<figcaption>${escapeHTML(caption)}</figcaption>` : ''}</figure>`;
+  }).join('');
+  wrap.innerHTML = `
+    <div class="container page-hero">
+      <span class="eyebrow">${escapeHTML(item.category || '')}</span>
+      <h1>${escapeHTML(item.title)}</h1>
+      <div class="case-meta">
+        ${item.client ? `<div><span>Client</span><b>${escapeHTML(item.client)}</b></div>` : ''}
+        ${item.year ? `<div><span>Year</span><b>${escapeHTML(item.year)}</b></div>` : ''}
+        <div><span>Category</span><b>${escapeHTML(item.category || '')}</b></div>
+      </div>
+    </div>
+    <div class="container case-cover"><img src="${item.image || 'https://placehold.co/1200x675/1C1428/E24FDD?text=Logovilage'}" alt="${escapeHTML(item.title)}"></div>
+    <div class="container post-body">${bodyHTML || `<p>${escapeHTML(item.description || '')}</p>`}</div>
+    ${gallery ? `<div class="container case-gallery">${gallery}</div>` : ''}
+    <div class="container" style="max-width:70ch;margin-top:20px;"><a href="work.html" class="btn btn-outline">← Back to all work</a></div>
+  `;
 }
 
 /* =========================================================
@@ -220,15 +264,57 @@ async function hydrateBlogPost() {
 }
 
 /* =========================================================
+   CONTACT FORM (Web3Forms) — works on any static host,
+   no backend needed. Get a free access key at web3forms.com
+   ========================================================= */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const statusBox = document.getElementById('formStatus');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data = await res.json();
+      statusBox.style.display = 'block';
+      if (data.success) {
+        statusBox.innerHTML = "Thanks — your message is in. We'll reply within one working day.";
+        statusBox.style.color = 'var(--gold)';
+        form.reset();
+      } else {
+        statusBox.innerHTML = 'Something went wrong sending that — please email us directly instead.';
+        statusBox.style.color = 'var(--stone)';
+      }
+    } catch (err) {
+      statusBox.style.display = 'block';
+      statusBox.innerHTML = 'Something went wrong sending that — please email us directly instead.';
+      statusBox.style.color = 'var(--stone)';
+    }
+    btn.textContent = originalText;
+    btn.disabled = false;
+  });
+}
+
+/* =========================================================
    BOOT
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   initAmbient();
   initNavAndReveal();
   initMagnetic();
+  initContactForm();
   hydrateSiteText();
   hydrateHeroWords();
   hydrateWork(document.body.dataset.workLimit ? Number(document.body.dataset.workLimit) : undefined);
+  hydrateWorkDetail();
   hydratePricing();
   hydrateBlogList(document.body.dataset.blogLimit ? Number(document.body.dataset.blogLimit) : undefined);
   hydrateBlogPost();
