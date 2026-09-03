@@ -234,7 +234,7 @@ section{ padding:96px 0; position:relative; }
 @media (max-width:560px){ .village-grid{ grid-template-columns:1fr; } }
 
 .plot{
-  background:var(--surface); padding:26px; position:relative; overflow:hidden;
+  background:var(--surface); padding:26px; position:relative; overflow:hidden; display:block;
   opacity:0; transform:translateY(18px);
   transition:opacity .6s var(--ease), transform .6s var(--ease), background .3s;
 }
@@ -246,6 +246,16 @@ section{ padding:96px 0; position:relative; }
 .plot h3{ margin-bottom:.25em; font-size:1.15rem; }
 .plot p{ font-size:.9rem; margin-bottom:0; }
 .plot-tag{ display:inline-block; margin-top:12px; font-family:var(--font-mono); font-size:.68rem; color:var(--primary-bright); letter-spacing:.06em; text-transform:uppercase; }
+
+/* ---------- Case study (work detail) ---------- */
+.case-meta{ display:flex; gap:32px; flex-wrap:wrap; margin:22px 0 40px; padding:20px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.case-meta div span{ display:block; font-family:var(--font-mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--stone-light); margin-bottom:4px; }
+.case-meta div b{ font-family:var(--font-display); font-size:1.05rem; font-weight:500; color:var(--paper); }
+.case-cover img{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:var(--radius-card); background:var(--surface); margin-bottom:10px; }
+.case-gallery{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin:44px 0; }
+@media (max-width:700px){ .case-gallery{ grid-template-columns:1fr; } }
+.case-gallery img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-card); background:var(--surface); }
+.case-gallery figcaption{ font-family:var(--font-mono); font-size:.72rem; color:var(--stone-light); margin-top:10px; }
 
 /* ---------- Process ---------- */
 .process{ background:var(--bg-alt); }
