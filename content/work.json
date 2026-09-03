@@ -4,7 +4,14 @@
       "title": "Solace",
       "category": "Brand Identity",
       "image": "/uploads/1000015551.jpg",
-      "description": "Organic Ingredients and pure class, made the logo a proper blend for showcasing your brand"
+      "description": "Organic Ingredients and pure class, made the logo a proper blend for showcasing your brand",
+      "gallery": [
+        {
+          "image": "/uploads/fb-l.png",
+          "caption": "food basket"
+        }
+      ],
+      "client": "Charles"
     },
     {
       "title": "Northbeam Coffee",
